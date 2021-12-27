@@ -1,0 +1,18 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        jcenter() // Warning: this repository is going to shut down soon
+    }
+}
+rootProject.name = "MoviesApp"
+include (':app')
+include (':domain')
+include (':framework:requestmanager')
+include (':framework:databasemanager')
+include (':usecases')
+include (':framework:imagemanager')
+include (':data')
+include (':sharedtesting')
+include ':framework:connectivitymanager'

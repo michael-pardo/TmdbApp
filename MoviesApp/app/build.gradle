@@ -1,0 +1,111 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+
+android {
+    compileSdk compile_sdk
+
+    defaultConfig {
+        applicationId "com.mistpaag.moviesapp"
+        minSdk min_sdk
+        targetSdk target_sdk
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+        kotlinCompilerVersion kotlin_version
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '11'
+        useIR = true
+    }
+    buildFeatures {
+        compose true
+        viewBinding true
+    }
+    packagingOptions {
+        exclude "**/attach_hotspot_windows.dll"
+        exclude "META-INF/licenses/**"
+        exclude "META-INF/AL2.0"
+        exclude "META-INF/LGPL2.1"
+    }
+}
+
+dependencies {
+
+    implementation project(":domain")
+    implementation project(":usecases")
+    implementation project(":data")
+    implementation project(":framework:connectivitymanager")
+    implementation project(":framework:databasemanager")
+    implementation project(":framework:requestmanager")
+    implementation project(":framework:imagemanager")
+    implementation project(":sharedtesting")
+
+
+    implementation kotlinLib
+    implementation coreKTXLib
+    implementation appCompatLib
+    implementation materialLib
+    implementation contraintLayoutLib
+    implementation navigationFragmentLib
+    implementation navigationUILib
+    implementation legayLib
+    implementation lifecycleLivedataLib
+    implementation lifecycleLiewModelLib
+
+    //COMPOSE
+    implementation composeUILib
+    implementation composeMaterialLib
+    implementation composePreviewLib
+    implementation activityComposeLib
+
+    implementation coilComposeLib
+
+    //RETROFIT
+    implementation retrofitLib
+    implementation gsonLib
+    implementation retrofitConverterGsonLib
+    implementation okHttpInterrceptorLib
+    implementation retrofitCoroutinesAdapterLib
+
+    //ROOM
+    implementation roomLib
+    implementation roomKTX
+    kapt roomCompiler
+
+    //HILT
+    implementation hiltLib
+    kapt hiltCompiler
+
+    //TEST
+    testImplementation jUnitLib
+    testImplementation mockkLib
+    testImplementation coreTestingLib
+    testImplementation coroutinesTestLib
+    testImplementation mockWebServerLib
+    androidTestImplementation coreTestingLib
+    androidTestImplementation expressoLib
+    androidTestImplementation testExtLib
+    androidTestImplementation googleTruthLib
+}
